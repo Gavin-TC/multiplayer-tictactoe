@@ -40,17 +40,16 @@ def main() -> None:
 
         if my_turn == True:
             move = input("Enter a move: ")
+            match move:
+                case 'q':
+                    shared_state["cur_state"] = ClientState.SHUTTING_DOWN
+            client_socket.send(("move:" + str(move)).encode())
         else:
             print("Wait for your turn...")
 
         match shared_state["cur_state"]:
             case ClientState.AWAITING_CONNECTION:
                 attempt_server_connect()
-
-        match move:
-            case 'q':
-                shared_state["cur_state"] = ClientState.SHUTTING_DOWN
-        client_socket.send(("move:" + str(move)).encode())
 
     client_socket.send("closing".encode())
 
