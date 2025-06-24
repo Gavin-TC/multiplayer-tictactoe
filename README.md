@@ -1,1 +1,1 @@
-# Multiplayer Tetris
+# Multiplayer Tic-Tac-Toe
